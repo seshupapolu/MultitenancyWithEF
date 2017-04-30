@@ -6,21 +6,39 @@ create database Practice2
 Go
 create database Hospital1
 Go
-create database Hospital1
+create database Hospital2
 Go
 
-
+Use Hospital1
+Go
 Create Table Hospital
 (Id int primary key,
 [Name] varchar(50)
 )
-
+Go
+Use Hospital2
+Go
+Create Table Hospital
+(Id int primary key,
+[Name] varchar(50)
+)
+Go
+USE Practice1
 GO
 Create Table Practice
 (Id int primary key,
 [Name] varchar(50)
 )
 
+Go
+USE Practice2
+GO
+Create Table Practice
+(Id int primary key,
+[Name] varchar(50)
+)
+
+USe Common
 GO
 
 CREATE TABLE MasterData(
@@ -30,14 +48,12 @@ CREATE TABLE MasterData(
 )
 
 GO
-USE MasterData
-GO
 
 insert into MasterData values(1,'Practice1','Hospital1')
 Go
-insert into MasterData values(1,'Practice2','Hospital2')
+insert into MasterData values(2,'Practice2','Hospital2')
 GO
-insert into MasterData values(1,'Practice3','Hospital3')
+insert into MasterData values(3,'Practice3','Hospital3')
 
 
 

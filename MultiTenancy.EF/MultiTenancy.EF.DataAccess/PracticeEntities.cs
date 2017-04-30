@@ -5,8 +5,8 @@ namespace MultiTenancy.EF.DataAccess
 {
     public partial class PracticeEntities : DbContext
     {
-        public PracticeEntities(DbConnection existingConnection)
-            : base(existingConnection, false)
+        public PracticeEntities(string existingConnection)
+            : base(existingConnection)
         {
         }
     }

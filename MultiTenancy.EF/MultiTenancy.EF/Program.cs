@@ -14,9 +14,9 @@ namespace MultiTenancy.EF
             Console.WriteLine("Enter number 1 or 2");
             int input = Convert.ToInt32(Console.ReadLine());
             CommonEntities en = new CommonEntities();
-            var val=en.MasterDatas.First(x => x.Id == input);
+            var val = en.MasterDatas.First(x => x.Id == input);
 
-            PracticeEntities pn = new PracticeEntities(DbFactory.GetConnection(val.DbName,"Practice"));
+            PracticeEntities pn = new PracticeEntities(DbFactory.GetConnection(val.DbName, "Practice"));
 
             pn.Practices.Add(new Practice()
             {

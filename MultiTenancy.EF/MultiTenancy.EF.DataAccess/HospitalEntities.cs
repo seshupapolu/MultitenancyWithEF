@@ -10,8 +10,8 @@ namespace MultiTenancy.EF.DataAccess
 {
     public partial class HospitalEntities : DbContext
     {
-        public HospitalEntities(DbConnection existingConnection)
-            : base(existingConnection, false)
+        public HospitalEntities(string existingConnection)
+            : base(existingConnection)
         {
         }
     }
