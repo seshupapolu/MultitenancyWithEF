@@ -20,8 +20,8 @@ namespace MultiTenancy.EF
 
             pn.Practices.Add(new Practice()
             {
-                Id = 1,
-                Name = "seshu"
+                Id = 5,
+                Name = "papolu"
             });
 
             pn.SaveChanges();

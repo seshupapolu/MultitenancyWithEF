@@ -14,10 +14,10 @@ namespace MultiTenancy.EF.DataAccess
             switch (entity)
             {
                 case "Practice":
-                    connection = GetConnectionString(dbName,Constants.PracticeMetadata, "PracticeEntities");
+                    connection = GetConnectionString(dbName, Constants.PracticeMetadata, "PracticeEntities");
                     break;
                 case "Hospital":
-                    connection = GetConnectionString(dbName,Constants.HospitalMetadata, "HospitalEntities");
+                    connection = GetConnectionString(dbName, Constants.HospitalMetadata, "HospitalEntities");
                     break;
             }
 
@@ -25,32 +25,31 @@ namespace MultiTenancy.EF.DataAccess
 
         }
 
-        private static DbConnection GetPracticeConnection(string dbName)
+        //private static DbConnection GetPracticeConnection(string dbName)
+        //{
+        //    string connectionString = ConfigurationManager.ConnectionStrings["PracticeEntities"].ConnectionString;
+        //    return new SqlConnection(connectionString.Replace("initial catalog=DB", "initial catalog=" + dbName));
+
+        //}
+
+        //private static DbConnection GetHospitalConnection(string dbName)
+        //{
+        //    string connectionString = ConfigurationManager.ConnectionStrings["HospitalEntities"].ConnectionString;
+        //    return new SqlConnection(connectionString.Replace("initial catalog=DB", "initial catalog=" + dbName));
+        //}
+
+
+        private static string GetConnectionString(string dbName, string metadata, string connection)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["PracticeEntities"].ConnectionString;
-            return new SqlConnection(connectionString.Replace("initial catalog=DB", "initial catalog=" + dbName));
-
-        }
-
-        private static DbConnection GetHospitalConnection(string dbName)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["HospitalEntities"].ConnectionString;
-            return new SqlConnection(connectionString.Replace("initial catalog=DB", "initial catalog=" + dbName));
-        }
-
-
-        private static string GetConnectionString(string dbName,string metadata,string connection)
-        {
-           // string connectionString = new ConfigurationSettings.AppSettings["ConnectionString"]);
             string connectionString = ConfigurationManager.ConnectionStrings[connection].ConnectionString;
             System.Data.SqlClient.SqlConnectionStringBuilder scsb = new System.Data.SqlClient.SqlConnectionStringBuilder(connectionString.Replace("dbname", dbName));
 
-            EntityConnectionStringBuilder ecb = new EntityConnectionStringBuilder();
-            ecb.Metadata = metadata;
-            ecb.Provider = "System.Data.SqlClient";
-            ecb.ProviderConnectionString = scsb.ConnectionString;
-            return ecb.ConnectionString;
-          //  dataContext = new SampleEntities(ecb.ConnectionString);
+            return (new EntityConnectionStringBuilder
+            {
+                Metadata = metadata,
+                Provider = "System.Data.SqlClient",
+                ProviderConnectionString = scsb.ConnectionString
+            }).ConnectionString;
         }
     }
 
